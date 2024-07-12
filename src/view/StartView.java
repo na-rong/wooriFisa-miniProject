@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import controller.ManageController;
 import controller.UserController;
 import model.domain.UserDTO;
 
@@ -13,7 +14,8 @@ public class StartView {
 
 		UserDTO nowUser = new UserDTO();		
 		ArrayList<UserDTO> userArray = UserController.getAllUser();
-
+		ManageController manageController = new ManageController();
+		
 		while (true) {
 			System.out.println();
 			System.out.println("------우리FISA 도서관------");
@@ -36,13 +38,28 @@ public class StartView {
 			}
 			
 			System.out.println("1. 모든 도서 보기");
-			System.out.println("2. 도서 검색하기");
-			System.out.println("3. 도서 대여하기");
-			System.out.println("4. 도서 반납하기");
+			System.out.println("2. 도서 대여하기");
+			System.out.println("3. 도서 반납하기");
 			if(nowUser.getAuth() == 1) {
-				System.out.println("5. 도서 등록하기");
-				System.out.println("6. 도서 수정하기");
-				System.out.println("7. 도서 삭제하기");
+				System.out.println("4. 도서 등록하기");
+				System.out.println("5. 도서 수정하기");
+				System.out.println("6. 도서 삭제하기");
+			}
+			System.out.println("번호 입력 : ");
+			int num = sc.nextInt();
+			switch(num) {
+			case 5:
+				System.out.println("도서명 : ");
+				String book_name = sc.nextLine();
+				System.out.println("isbn : ");
+				String isbn = sc.nextLine();
+				System.out.println("작가 : ");
+				String author = sc.nextLine();
+				System.out.println("출판사 : ");
+				String publisher = sc.nextLine();
+				manageController.insertBook(book_name,isbn,author,publisher);
+			case 6:
+			case 7:
 			}
 		}
 	}
