@@ -49,9 +49,14 @@ public class StartView {
 					System.out.println("6. 도서 수정하기");
 					System.out.println("7. 도서 삭제하기");
 				}
+				System.out.println("0. 로그아웃");
 				System.out.print("\n번호 입력 : ");
 				int num = sc.nextInt();
 				switch (num) {
+				case 0:
+					checkLogin = -1;
+					System.out.println();
+					break;
 				case 1:
 					ArrayList<BookDTO> bookList = userController.getAllBook();
 					for (BookDTO b : bookList) {
