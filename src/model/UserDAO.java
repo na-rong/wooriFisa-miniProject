@@ -17,4 +17,5 @@ public class UserDAO {
 	public static ArrayList<UserDTO> getAllUser(){
 		return userArray;
 	}
+	
 }
