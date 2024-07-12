@@ -19,7 +19,7 @@ public class UserDAO {
 		userArray.add(new UserDTO("id4", "이현빈", 0));
 	}
 
-	public static ArrayList<UserDTO> getAllUser() {
+	public ArrayList<UserDTO> getAllUser() {
 		return userArray;
 	}
 

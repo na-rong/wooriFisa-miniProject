@@ -2,22 +2,25 @@ package controller;
 
 import java.util.ArrayList;
 
+import model.ManageDAO;
 import model.UserDAO;
+import model.domain.BookDTO;
 import model.domain.UserDTO;
 
 public class UserController {
-	
+	UserDAO userDAO = new UserDAO();
+
 	// common
-	public static ArrayList<UserDTO> getAllUser() {
-		return UserDAO.getAllUser();
+	public ArrayList<UserDTO> getAllUser() {
+		return userDAO.getAllUser();
 	}
-	
-	// 일반 회원
-	// 도서 대여
-	// 도서 반납
-	
-	// 관리자 회원
-	// 도서 등록
-	// 도서 삭제
-	// 도서 수정
+
+	public void borrowBook(BookDTO book, UserDTO user) {
+		userDAO.borrowBook(book, user);
+	}
+
+	public void returnBook(BookDTO book, UserDTO user) {
+		userDAO.returnBook(book, user);
+	}
+
 }
