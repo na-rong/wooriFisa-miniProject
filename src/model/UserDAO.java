@@ -23,11 +23,21 @@ public class UserDAO {
 		return userArray;
 	}
 
-	public void borrowBook(BookDTO book, UserDTO user) {
+	public void borrowBook(String book, UserDTO user) {
 		UserService.borrowBook(book, user);
 	}
 
-	public void returnBook(BookDTO book, UserDTO user) {
+	public void returnBook(String book, UserDTO user) {
 		UserService.returnBook(book, user);
 	}
+	
+	public ArrayList<BookDTO> getAllBook() {
+		return UserService.getAllBook();
+	}
+	
+	public void borrowBookList(UserDTO user) {
+		UserService.borrowBookList(user);
+	}
+
+	
 }

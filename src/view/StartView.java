@@ -43,10 +43,11 @@ public class StartView {
 				System.out.println("1. 모든 도서 보기");
 				System.out.println("2. 도서 대여하기");
 				System.out.println("3. 도서 반납하기");
+				System.out.println("4. 대여중인 도서보기");
 				if (nowUser.getAuth() == 1) {
-					System.out.println("4. 도서 등록하기");
-					System.out.println("5. 도서 수정하기");
-					System.out.println("6. 도서 삭제하기");
+					System.out.println("5. 도서 등록하기");
+					System.out.println("6. 도서 수정하기");
+					System.out.println("7. 도서 삭제하기");
 				}
 				System.out.println("번호 입력 : ");
 				int num = sc.nextInt();
@@ -62,8 +63,13 @@ public class StartView {
 					userController.borrowBook(bookname, nowUser);
 					break;
 				case 3:
+					String bookname1 = sc.next();
+					userController.returnBook(bookname1, nowUser);
 					break;
 				case 4:
+					userController.borrowBookList(nowUser);
+					break;
+				case 5:
 					System.out.println("도서명 : ");
 					String book_name = sc.next();
 					System.out.println("isbn : ");
@@ -74,7 +80,7 @@ public class StartView {
 					String publisher = sc.next();
 					manageController.insertBook(book_name, isbn, author, publisher);
 					break;
-				case 5:
+				case 6:
 					System.out.println("수정하려는 도서의 isbn을 입력하세요 : ");
 					String isbn_update = sc.next();
 					int bookArray_idx = manageController.checkIsbn(isbn_update);
@@ -91,7 +97,17 @@ public class StartView {
 						manageController.updateBook(bookArray_idx, book_name_upd, author_upd, publisher_upd);
 					}
 					break;
-				case 6:
+				case 7:
+					System.out.println("삭제하려는 도서의 isbn을 입력하세요 : ");
+					String isbn_delete = sc.next();
+					int bookArray_idx2 = manageController.checkIsbn(isbn_delete);
+					if(bookArray_idx2 != -9999) {
+						manageController.deleteBook(bookArray_idx2);
+						System.out.println("삭제되었습니다.");
+					}
+					else {
+						System.out.println("존재하지 않는 isbn 입니다.");
+					}
 					break;
 				}
 			}

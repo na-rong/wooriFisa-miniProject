@@ -2,49 +2,71 @@ package service;
 
 import java.util.ArrayList;
 
+import lombok.ToString;
 import model.BookDAO;
 import model.domain.BookDTO;
 import model.domain.UserDTO;
 
 public class UserService {
 
-	public static UserDTO borrowBook(BookDTO book, UserDTO user) {
+	public static void borrowBook(String book, UserDTO user) {
 		ArrayList<BookDTO> bookList = BookDAO.getAllBook();
 
+		BookDTO temp = new BookDTO(null, null, null, null);
 		// 해당 도서를 보유하고 있는지 확인
 		for (int i = 0; i < bookList.size(); i++) {
-			if (bookList.get(i).getBookName().equals(book.getBookName())) {
-				System.out.println(book.getBookName() + "을 대여하겠습니다.");
+			if (bookList.get(i).getBookName().equals(book)) {
+				System.out.println(book + "을 대여하겠습니다.");
+				temp = bookList.get(i);
 				bookList.remove(i);
 				break;
 			} else {
 				if (i == bookList.size() - 1)
-					System.out.println(book.getBookName() + "을 대여할 수 없습니다");
+					System.out.println(book + "을 대여할 수 없습니다");
 			}
 		}
 		// 회원의 대여 도서 목록에 추가
-		user.getBookArray().add(book);
-
-		return user;
+		user.getBookArray().add(temp);
 	}
 
-	public static void returnBook(BookDTO book, UserDTO user) {
+	public static void returnBook(String book, UserDTO user) {
 		// 반납하려는 도서를 대여한 기록이 있는지 확인
 		ArrayList<BookDTO> ownBook = user.getBookArray();
 
+		BookDTO temp = new BookDTO(null, null, null, null);
+		
 		for (int i = 0; i < ownBook.size(); i++) {
-			if (ownBook.get(i).getBookName().equals(book.getBookName())) {
-				System.out.println(book.getBookName() + "을 반납하겠습니다.");
+			if (ownBook.get(i).getBookName().equals(book)) {
+				System.out.println(book + "을 반납하겠습니다.");
+				temp = ownBook.get(i);
 				ownBook.remove(i);
 				break;
 			} else {
 				if (i == ownBook.size() - 1)
-					System.out.println(book.getBookName() + "을 대여한 기록이 없습니다.");
+					System.out.println(book + "을 대여한 기록이 없습니다.");
 			}
 		}
 
 		// 반납된 도서를 다시 전체 도서 목록에 추가
 		ArrayList<BookDTO> bookList = BookDAO.getAllBook();
-		bookList.add(book);
+		bookList.add(temp);
+	}
+
+	public static ArrayList<BookDTO> getAllBook() {
+		ArrayList<BookDTO> bookList = BookDAO.getAllBook();
+		return bookList;
+	}
+	
+	public static void borrowBookList(UserDTO user) {
+		ArrayList<BookDTO> bookList = user.getBookArray();
+		if (bookList.size() == 0) {
+			System.out.println("현재 대여중인 도서가 없습니다.\n");
+		} else {
+			System.out.println("------현재 대여중인 도서------");
+			for (BookDTO b : bookList) {
+				b.toString();
+			}
+			System.out.println("--------------------------");
+		}
 	}
 }
