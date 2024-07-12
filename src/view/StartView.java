@@ -14,8 +14,10 @@ public class StartView {
 		Scanner sc = new Scanner(System.in);
 		UserDTO nowUser = new UserDTO();
 		int checkLogin = -1;
-		ArrayList<UserDTO> userArray = UserController.getAllUser();
+		UserController userController = new UserController();
 		ManageController manageController = new ManageController();
+
+		ArrayList<UserDTO> userArray = userController.getAllUser();
 
 		while (true) {
 			if (checkLogin == -1) {
@@ -49,6 +51,18 @@ public class StartView {
 				System.out.println("번호 입력 : ");
 				int num = sc.nextInt();
 				switch (num) {
+				case 1:
+					ArrayList<BookDTO> bookList = userController.getAllBook();
+					for (BookDTO b : bookList) {
+						System.out.println(b.toString());
+					}
+					break;
+				case 2:
+					String bookname = sc.next();
+					userController.borrowBook(bookname, nowUser);
+					break;
+				case 3:
+					break;
 				case 4:
 					System.out.println("도서명 : ");
 					String book_name = sc.next();
@@ -64,7 +78,7 @@ public class StartView {
 					System.out.println("수정하려는 도서의 isbn을 입력하세요 : ");
 					String isbn_update = sc.next();
 					int bookArray_idx = manageController.checkIsbn(isbn_update);
-					if(bookArray_idx == -9999) {
+					if (bookArray_idx == -9999) {
 						System.out.println("존재하지 않는 isbn입니다.");
 						System.out.println();
 					} else {
@@ -74,20 +88,10 @@ public class StartView {
 						String author_upd = sc.next();
 						System.out.println("출판사 : ");
 						String publisher_upd = sc.next();
-						manageController.updateBook(bookArray_idx,book_name_upd,author_upd,publisher_upd);
+						manageController.updateBook(bookArray_idx, book_name_upd, author_upd, publisher_upd);
 					}
 					break;
 				case 6:
-					System.out.println("삭제하려는 도서의 isbn을 입력하세요 : ");
-					String isbn_delete = sc.next();
-					int bookArray_idx2 = manageController.checkIsbn(isbn_delete);
-					if(bookArray_idx2 != -9999) {
-						manageController.deleteBook(bookArray_idx2);
-						System.out.println("삭제되었습니다.");
-					}
-					else {
-						System.out.println("존재하지 않는 isbn 입니다.");
-					}
 					break;
 				}
 			}
