@@ -2,7 +2,6 @@ package controller;
 
 import java.util.ArrayList;
 
-import model.ManageDAO;
 import model.UserDAO;
 import model.domain.BookDTO;
 import model.domain.UserDTO;
@@ -15,12 +14,19 @@ public class UserController {
 		return userDAO.getAllUser();
 	}
 
-	public void borrowBook(BookDTO book, UserDTO user) {
+	public void borrowBook(String book, UserDTO user) {
 		userDAO.borrowBook(book, user);
 	}
 
-	public void returnBook(BookDTO book, UserDTO user) {
+	public void returnBook(String book, UserDTO user) {
 		userDAO.returnBook(book, user);
 	}
+	
+	public ArrayList<BookDTO> getAllBook() {
+		return userDAO.getAllBook();
+	}
 
+	public void borrowBookList(UserDTO user) {
+		userDAO.borrowBookList(user);
+	}
 }

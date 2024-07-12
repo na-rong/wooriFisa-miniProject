@@ -63,6 +63,8 @@ public class StartView {
 					userController.borrowBook(bookname, nowUser);
 					break;
 				case 3:
+					String bookname1 = sc.next();
+					userController.returnBook(bookname1, nowUser);
 					break;
 				case 4:
 					userController.borrowBookList(nowUser);
