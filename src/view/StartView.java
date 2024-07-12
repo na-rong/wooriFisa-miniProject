@@ -32,7 +32,7 @@ public class StartView {
                         break;
                     } catch (InputMismatchException e) {
                         System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.");
-                        sc.next(); // 잘못된 입력 값을 버림
+                        sc.next();
                     }
                 }
                 System.out.println();
@@ -86,7 +86,7 @@ public class StartView {
                         break;
                     } catch (InputMismatchException e) {
                         System.out.println("잘못된 입력입니다. 숫자를 입력해주세요.");
-                        sc.next(); // 잘못된 입력 값을 버림
+                        sc.next();
                     }
                 }
 
