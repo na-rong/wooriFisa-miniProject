@@ -29,4 +29,8 @@ public class UserController {
 	public void borrowBookList(UserDTO user) {
 		userDAO.borrowBookList(user);
 	}
+	
+	public void signin(String id, String name) {
+		userDAO.signin(id, name);
+	}
 }

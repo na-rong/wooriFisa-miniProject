@@ -39,5 +39,7 @@ public class UserDAO {
 		UserService.borrowBookList(user);
 	}
 
-	
+	public void signin(String id, String name) {
+		userArray.add(new UserDTO(id, name, 0));
+	}
 }
