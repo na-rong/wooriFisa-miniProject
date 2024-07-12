@@ -1,6 +1,16 @@
 package controller;
 
+import java.util.ArrayList;
+
+import model.UserDAO;
+import model.domain.UserDTO;
+
 public class BookController {
+	
+	// common
+	public static ArrayList<UserDTO> getAllUser() {
+		return UserDAO.getAllUser();
+	}
 	
 	// 일반 회원
 	// 회원 등록
