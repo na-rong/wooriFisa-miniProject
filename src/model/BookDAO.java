@@ -46,23 +46,8 @@ static ArrayList<BookDTO> bookArray = new ArrayList<>();
 		bookArray.remove(index);
 		bookArray.add(dto);
 		
-		for(BookDTO b : bookArray) {
-			System.out.print(b.getBookName());
-			System.out.print(b.getIsbn());
-			System.out.print(b.getAuthor());
-			System.out.print(b.getPublisher());
-			System.out.println();
-		}
 	}
 	public static void deleteBook(int index) {
 		bookArray.remove(index);
-		
-		for(BookDTO b : bookArray) {
-			System.out.print(b.getBookName());
-			System.out.print(b.getIsbn());
-			System.out.print(b.getAuthor());
-			System.out.print(b.getPublisher());
-			System.out.println();
-		}
 	}
 }
