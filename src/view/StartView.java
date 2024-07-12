@@ -78,6 +78,16 @@ public class StartView {
 					}
 					break;
 				case 6:
+					System.out.println("삭제하려는 도서의 isbn을 입력하세요 : ");
+					String isbn_delete = sc.next();
+					int bookArray_idx2 = manageController.checkIsbn(isbn_delete);
+					if(bookArray_idx2 != -9999) {
+						manageController.deleteBook(bookArray_idx2);
+						System.out.println("삭제되었습니다.");
+					}
+					else {
+						System.out.println("존재하지 않는 isbn 입니다.");
+					}
 					break;
 				}
 			}

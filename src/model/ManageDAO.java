@@ -16,4 +16,8 @@ public class ManageDAO {
 	public void updateBook(int index, String book_name, String author, String publisher) {
 		manageService.updateBook(index, book_name, author, publisher);
 	}
+	
+	public void deleteBook(int index) {
+		manageService.deleteBook(index);
+	}
 }

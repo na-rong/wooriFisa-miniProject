@@ -21,5 +21,7 @@ public class ManageService extends UserService{
 		bookDAO.updateBook(index, book_name, author, publisher);
 	}
 	// 도서 삭제하기	
-	
+	public void deleteBook(int index) {		
+		bookDAO.deleteBook(index);
+	}
 }
