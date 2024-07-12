@@ -23,19 +23,19 @@ public class StartView {
 			if (checkLogin == -1) {
 				System.out.println("------우리FISA 도서관------");
 
-				System.out.println("id를 입력해주세요 : ");
+				System.out.print("id를 입력해주세요 : ");
 				String login_id = sc.next();
 
 				for (int i = 0; i < userArray.size(); i++) {
 					if (userArray.get(i).getId().equals(login_id)) {
-						System.out.println("환영합니다 " + userArray.get(i).getUserName() + "님\n");
+						System.out.println("\n환영합니다 " + userArray.get(i).getUserName() + "님\n");
 						nowUser = userArray.get(i);
 						checkLogin = 1;
 						break;
 					} else {
 						if (i == userArray.size() - 1) {
 							System.out.println("존재하지 않는 ID입니다. \n\n");
-							
+
 						}
 					}
 				}
@@ -49,7 +49,7 @@ public class StartView {
 					System.out.println("6. 도서 수정하기");
 					System.out.println("7. 도서 삭제하기");
 				}
-				System.out.println("\n번호 입력 : ");
+				System.out.print("\n번호 입력 : ");
 				int num = sc.nextInt();
 				switch (num) {
 				case 1:
@@ -57,12 +57,15 @@ public class StartView {
 					for (BookDTO b : bookList) {
 						System.out.println(b.toString());
 					}
+					System.out.println();
 					break;
 				case 2:
+					System.out.print("대여할 도서명을 입력해주세요 : ");
 					String bookname = sc.next();
 					userController.borrowBook(bookname, nowUser);
 					break;
 				case 3:
+					System.out.print("반납할 도서명을 입력해주세요 : ");
 					String bookname1 = sc.next();
 					userController.returnBook(bookname1, nowUser);
 					break;
@@ -70,43 +73,43 @@ public class StartView {
 					userController.borrowBookList(nowUser);
 					break;
 				case 5:
-					System.out.println("도서명 : ");
+					System.out.print("도서명 : ");
 					String book_name = sc.next();
-					System.out.println("isbn : ");
+					System.out.print("isbn : ");
 					String isbn = sc.next();
-					System.out.println("작가 : ");
+					System.out.print("작가 : ");
 					String author = sc.next();
-					System.out.println("출판사 : ");
+					System.out.print("출판사 : ");
 					String publisher = sc.next();
 					manageController.insertBook(book_name, isbn, author, publisher);
 					break;
 				case 6:
-					System.out.println("수정하려는 도서의 isbn을 입력하세요 : ");
+					System.out.print("수정하려는 도서의 isbn을 입력하세요 : ");
 					String isbn_update = sc.next();
 					int bookArray_idx = manageController.checkIsbn(isbn_update);
 					if (bookArray_idx == -9999) {
-						System.out.println("존재하지 않는 isbn입니다.");
+						System.out.println("존재하지 않는 isbn입니다.\n");
 						System.out.println();
 					} else {
-						System.out.println("도서명 : ");
+						System.out.print("도서명 : ");
 						String book_name_upd = sc.next();
-						System.out.println("작가 : ");
+						System.out.print("작가 : ");
 						String author_upd = sc.next();
-						System.out.println("출판사 : ");
+						System.out.print("출판사 : ");
 						String publisher_upd = sc.next();
 						manageController.updateBook(bookArray_idx, book_name_upd, author_upd, publisher_upd);
+						System.out.println("수정되었습니다.\n");
 					}
 					break;
 				case 7:
-					System.out.println("삭제하려는 도서의 isbn을 입력하세요 : ");
+					System.out.print("삭제하려는 도서의 isbn을 입력하세요 : ");
 					String isbn_delete = sc.next();
 					int bookArray_idx2 = manageController.checkIsbn(isbn_delete);
-					if(bookArray_idx2 != -9999) {
+					if (bookArray_idx2 != -9999) {
 						manageController.deleteBook(bookArray_idx2);
-						System.out.println("삭제되었습니다.");
-					}
-					else {
-						System.out.println("존재하지 않는 isbn 입니다.");
+						System.out.println("삭제되었습니다.\n");
+					} else {
+						System.out.println("존재하지 않는 isbn 입니다.\n");
 					}
 					break;
 
