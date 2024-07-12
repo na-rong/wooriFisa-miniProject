@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import model.UserDAO;
 import model.domain.UserDTO;
 
-public class BookController {
+public class UserController {
 	
 	// common
 	public static ArrayList<UserDTO> getAllUser() {

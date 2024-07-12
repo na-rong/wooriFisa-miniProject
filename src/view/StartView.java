@@ -3,7 +3,7 @@ package view;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import controller.BookController;
+import controller.UserController;
 import model.domain.UserDTO;
 
 public class StartView {
@@ -12,7 +12,7 @@ public class StartView {
 		Scanner sc = new Scanner(System.in);
 
 		UserDTO nowUser = new UserDTO();		
-		ArrayList<UserDTO> userArray = BookController.getAllUser();
+		ArrayList<UserDTO> userArray = UserController.getAllUser();
 
 		while (true) {
 			System.out.println();
